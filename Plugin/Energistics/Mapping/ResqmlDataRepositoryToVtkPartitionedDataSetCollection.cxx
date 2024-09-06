@@ -75,6 +75,8 @@ VtkAssembly => TreeView:
 #ifdef WITH_ETP_SSL
 #include <thread>
 
+#include <boost/uuid/random_generator.hpp>
+
 #include <fetpapi/etp/fesapi/FesapiHdfProxy.h>
 
 #include <fetpapi/etp/ProtocolHandlers/DataspaceHandlers.h>
@@ -226,16 +228,10 @@ std::vector<std::string> ResqmlDataRepositoryToVtkPartitionedDataSetCollection::
 #ifdef WITH_ETP_SSL
     boost::uuids::random_generator w_gen;
     ETP_NS::InitializationParameters w_initializationParams(w_gen(), p_etpUrl);
+    std::map<std::string, std::string> w_additionalHandshakeHeaderFields = { {"data-partition-id", p_dataPartition} };
+    w_initializationParams.setAdditionalHandshakeHeaderFields(w_additionalHandshakeHeaderFields);
 
-    std::map<std::string, std::string> w_additionalHandshakeHeaderFields = {{"data-partition-id", p_dataPartition}};
-    if (p_etpUrl.find("ws://") == 0)
-    {
-        _session = ETP_NS::ClientSessionLaunchers::createWsClientSession(&w_initializationParams, p_authConnection, w_additionalHandshakeHeaderFields);
-    }
-    else
-    {
-        _session = ETP_NS::ClientSessionLaunchers::createWssClientSession(&w_initializationParams, p_authConnection, w_additionalHandshakeHeaderFields);
-    }
+    _session = ETP_NS::ClientSessionLaunchers::createClientSession(&w_initializationParams, p_authConnection);
     try
     {
         _session->setDataspaceProtocolHandlers(std::make_shared<ETP_NS::DataspaceHandlers>(_session.get()));
@@ -271,19 +267,8 @@ std::vector<std::string> ResqmlDataRepositoryToVtkPartitionedDataSetCollection::
 
     _repository->setHdfProxyFactory(new ETP_NS::FesapiHdfProxyFactory(_session.get()));
 
-    //
-    if (p_etpUrl.find("ws://") == 0)
-    {
-        auto w_plainSession = std::dynamic_pointer_cast<ETP_NS::PlainClientSession>(_session);
-        std::thread w_sessionThread(&ETP_NS::PlainClientSession::run, w_plainSession);
-        w_sessionThread.detach();
-    }
-    else
-    {
-        auto w_sslSession = std::dynamic_pointer_cast<ETP_NS::SslClientSession>(_session);
-        std::thread w_sessionThread(&ETP_NS::SslClientSession::run, w_sslSession);
-        w_sessionThread.detach();
-    }
+    std::thread w_sessionThread(&ETP_NS::ClientSession::run, _session);
+    w_sessionThread.detach();
 
     // Wait for the ETP session to be opened
     auto w_tStart = std::chrono::high_resolution_clock::now();
