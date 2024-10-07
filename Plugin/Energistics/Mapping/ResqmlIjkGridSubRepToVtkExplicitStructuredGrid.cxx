@@ -32,7 +32,7 @@ under the License.
 // include FESAPI
 #include <fesapi/resqml2/SubRepresentation.h>
 #include <fesapi/resqml2/AbstractIjkGridRepresentation.h>
-#include <fesapi/resqml2/LocalDepth3dCrs.h>
+#include <fesapi/resqml2_0_1/LocalDepth3dCrs.h>
 
 // include FESPP
 #include "ResqmlIjkGridToVtkExplicitStructuredGrid.h"

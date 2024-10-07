@@ -26,7 +26,7 @@ under the License.
 
 #include <fesapi/resqml2/WellboreMarker.h>
 #include <fesapi/resqml2/WellboreMarkerFrameRepresentation.h>
-#include <fesapi/resqml2/AbstractLocal3dCrs.h>
+#include <fesapi/eml2/AbstractLocal3dCrs.h>
 
 #include "Mapping/ResqmlWellboreMarkerToVtkPolyData.h"
 

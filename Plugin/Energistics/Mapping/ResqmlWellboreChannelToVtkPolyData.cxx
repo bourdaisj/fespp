@@ -29,7 +29,7 @@ under the License.
 #include <fesapi/resqml2/DiscreteProperty.h>
 #include <fesapi/resqml2/CategoricalProperty.h>
 #include <fesapi/resqml2/AbstractValuesProperty.h>
-#include <fesapi/resqml2/AbstractLocal3dCrs.h>
+#include <fesapi/eml2/AbstractLocal3dCrs.h>
 
 //----------------------------------------------------------------------------
 ResqmlWellboreChannelToVtkPolyData::ResqmlWellboreChannelToVtkPolyData(const RESQML2_NS::WellboreFrameRepresentation *frame, const RESQML2_NS::AbstractValuesProperty *property, const std::string &p_uuid, uint32_t p_procNumber, uint32_t p_maxProc)

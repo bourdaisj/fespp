@@ -25,7 +25,7 @@ under the License.
 
 // include F2i-consulting Energistics Standards API
 #include <fesapi/resqml2/Grid2dRepresentation.h>
-#include <fesapi/resqml2/AbstractLocal3dCrs.h>
+#include <fesapi/eml2/AbstractLocal3dCrs.h>
 
 // include F2i-consulting Energistics Paraview Plugin
 #include "Mapping/ResqmlPropertyToVtkDataArray.h"

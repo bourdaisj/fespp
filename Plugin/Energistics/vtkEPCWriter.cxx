@@ -39,7 +39,7 @@ under the License.
 #include "fesapi/eml2/AbstractHdfProxy.h"
 #include "fesapi/common/DataObjectRepository.h"
 #include "fesapi/resqml2_0_1/DiscreteProperty.h"
-#include "fesapi/resqml2/LocalDepth3dCrs.h"
+#include "fesapi/resqml2_0_1/LocalDepth3dCrs.h"
 #include "fesapi/resqml2_0_1/ContinuousProperty.h"
 #include "fesapi/resqml2_0_1/PropertyKind.h"
 #include "fesapi/resqml2_0_1/UnstructuredGridRepresentation.h"
@@ -110,7 +110,7 @@ void vtkEPCWriter::WriteData()
 	common::AbstractObject::setFormat("F2I-CONSULTING", "FESPP", PROJECT_VERSION);
 	eml2::AbstractHdfProxy* hdfProxy = repo.createHdfProxy("", "Hdf Proxy", epcDoc.getStorageDirectory(), epcDoc.getName() + ".h5", COMMON_NS::DataObjectRepository::openingMode::OVERWRITE);
 
-	resqml2::LocalDepth3dCrs* local3dCrs = repo.createLocalDepth3dCrs("", "Default local CRS", .0, .0, .0, .0, gsoap_resqml2_0_1::eml20__LengthUom::m, "ParaView does not support CRS", gsoap_resqml2_0_1::eml20__LengthUom::m, "ParaView does not support CRS", true);
+	resqml2_0_1::LocalDepth3dCrs* local3dCrs = repo.createLocalDepth3dCrs("", "Default local CRS", .0, .0, .0, .0, gsoap_resqml2_0_1::eml20__LengthUom::m, "ParaView does not support CRS", gsoap_resqml2_0_1::eml20__LengthUom::m, "ParaView does not support CRS", true);
 	repo.setDefaultCrs(local3dCrs);
 
 	if (!Internal->discretePropertyKind)

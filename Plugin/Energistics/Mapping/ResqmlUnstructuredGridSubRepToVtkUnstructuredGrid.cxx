@@ -41,7 +41,7 @@ under the License.
 // FESAPI
 #include <fesapi/resqml2/UnstructuredGridRepresentation.h>
 #include <fesapi/resqml2/SubRepresentation.h>
-#include <fesapi/resqml2/AbstractLocal3dCrs.h>
+#include <fesapi/eml2/AbstractLocal3dCrs.h>
 
 // FESPP
 #include "ResqmlAbstractRepresentationToVtkPartitionedDataSet.h"

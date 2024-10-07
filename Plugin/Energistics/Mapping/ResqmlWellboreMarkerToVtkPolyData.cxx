@@ -30,7 +30,7 @@ under the License.
 
 #include <fesapi/resqml2/WellboreMarker.h>
 #include <fesapi/resqml2/WellboreMarkerFrameRepresentation.h>
-#include <fesapi/resqml2/AbstractLocal3dCrs.h>
+#include <fesapi/eml2/AbstractLocal3dCrs.h>
 
 //----------------------------------------------------------------------------
 ResqmlWellboreMarkerToVtkPolyData::ResqmlWellboreMarkerToVtkPolyData(const resqml2::WellboreMarkerFrameRepresentation *p_markerFrame, std::string p_uuid, bool p_orientation, uint32_t p_size, uint32_t p_procNumber, uint32_t p_maxProc)
